@@ -7,7 +7,9 @@
         <p class="beer-name">{{ beer.name }}</p>
       </div>
       <div class="col-6">
-        <p class="temperature">{{ `${container.temperature}°C` }}</p>
+        <p class="temperature" :class="{'text-error' : !rightTemperature}">
+          {{ `${container.temperature}°C` }}
+        </p>
         <p class="range">{{ `${beer.range.start}°C to ${beer.range.end}°C` }}</p>
       </div>
     </div>
@@ -32,6 +34,10 @@ export default {
   computed: {
     beer() {
       return beers().find(beer => beer.id === this.container.beer);
+    },
+    rightTemperature() {
+      return this.container.temperature >= this.beer.range.start
+        && this.container.temperature <= this.beer.range.end;
     },
   },
 };

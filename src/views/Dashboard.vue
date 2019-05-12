@@ -1,13 +1,22 @@
 <template>
   <div class="dashboard container">
-    <header class="d-flex align-items-center justify-content-between">
-      <h1>PragmaBrewery Code Challenge</h1>
-      <router-link class="btn" to="/create">Add Container</router-link>
-    </header>
+    <h1>PragmaBrewery Code Challenge</h1>
+    <small>Created by Luíza Piroli Haas</small>
+
     <div class="content">
       <containers-list />
-      <containers-create v-if="$route.name === 'Create'"/>
     </div>
+
+    <container-create v-if="$route.name === 'Create'" />
+
+    <notifications
+      group="create"
+      position="bottom right"
+    />
+    <notifications
+      group="checkTemperature"
+      position="bottom right"
+     />
   </div>
 </template>
 
@@ -22,14 +31,16 @@ export default {
   name: 'Dashboard',
   components: {
     'containers-list': ContainersList,
-    'containers-create': ContainerCreate,
+    'container-create': ContainerCreate,
   },
   methods: {
     changeTemperature(container, temperature) {
       setTemperature(container.id, temperature);
 
-      const beer = beers().filter(beer => beer.id === container.beer)[0];
-      if (temperature > beer.range.max || temperature < beer.range.min) {
+      const beer = beers().filter(b => b.id === container.beer)[0];
+      console.log(beer.range.end, beer.range.start, temperature);
+      if (temperature > beer.range.end || temperature < beer.range.start) {
+        console.log('entrei no if');
         bus.$emit('send-notification', container);
       }
     },
@@ -38,7 +49,7 @@ export default {
         if (this.containers.length) {
           console.log('temperatureRandom');
           const container = this.containers[Math.floor(Math.random() * this.containers.length)];
-          let temperature = container.temperature + Math.floor(Math.random() * 2) - 2;
+          let temperature = container.temperature + Math.floor(Math.random() * 5) - 2;
 
           if (temperature < -10) temperature = -10;
           if (temperature > 10) temperature = 10;
@@ -57,7 +68,13 @@ export default {
     this.temperatureRandom();
 
     bus.$on('send-notification', (container) => {
-      alert(container);
+      console.log('send-notification');
+      this.$notify({
+        type: 'warn',
+        group: 'checkTemperature',
+        title: 'Check the temperature!',
+        text: `The container ${container.name} is outside the temperature range`,
+      });
     });
   },
 };

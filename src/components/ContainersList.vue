@@ -1,7 +1,9 @@
 <template>
   <div class="containers-list">
-    {{ !!containers.length }}
-    <h2>My Containers</h2>
+    <header>
+      <h2>My Containers</h2>
+      <router-link to="/create" class="btn">Add Container</router-link>
+    </header>
     <div class="row" v-if="!!containers.length">
       <div class="col" v-for="(container, key) in containers" :key="key">
         <container-card :container="container" />

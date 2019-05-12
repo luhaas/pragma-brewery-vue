@@ -1,8 +1,8 @@
 <template>
   <div class="container-add">
-    <div class="content">
+    <div class="content" :class="{ error }">
       <header class="d-flex align-items-center justify-content-between">
-        <h2 class="mt-0 mb-0">Add new container</h2>
+        <h3 class="mt-0 mb-0">Add new container</h3>
         <i class="icon-remove" @click="back"></i>
       </header>
       <div class="input-wrapper">
@@ -40,6 +40,7 @@ export default {
       quantity: undefined,
       selectedBeer: undefined,
       beerOptions: [],
+      error: false,
     };
   },
   methods: {
@@ -50,7 +51,12 @@ export default {
       if (this.isValid) {
         add(this.name, this.selectedBeer, this.quantity);
         this.back();
-      }
+        this.$notify({
+          group: 'create',
+          title: 'Success!',
+          text: 'Container sucessfully created',
+        });
+      } else this.error = true;
       this.reset();
     },
     back() {
@@ -84,6 +90,11 @@ export default {
     background-color: #426cda;
     opacity: 0.12;
     z-index: 1;
+  }
+  &.error {
+    input, select {
+      border-color: red;
+    }
   }
   .content {
     width: 400px;

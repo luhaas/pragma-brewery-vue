@@ -15,6 +15,8 @@ export default {
 .empty-list {
   display: flex;
   align-items: center;
+  font-size: 18px;
+  margin-top: 20px;
   .add {
     color: #0099bf;
     &:hover {
