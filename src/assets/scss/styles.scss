@@ -1,0 +1,52 @@
+@import url('https://fonts.googleapis.com/css?family=Lato');
+
+body {
+  font-family: 'Lato', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  background-color: #f1f1f1;
+  color: #444444;
+}
+
+.content {
+  padding: 40px 0;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.button-wrapper {
+  text-align: center;
+}
+button, .btn {
+  min-width: 200px;
+  height: 40px;
+  padding: 10px 20px;
+  border-radius: 20px;
+  color: #fff;
+  background-color: #426cda;
+  border: 0;
+  font-size: 14px;
+}
+
+.input-wrapper {
+  margin-bottom: 15px;
+  label {
+    display: block;
+    margin-bottom: 5px;
+  }
+
+  input, select {
+    width: 100%;
+    min-width: 250px;
+    height: 40px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    font-size: 14px;
+    box-sizing: border-box;
+  }
+}
