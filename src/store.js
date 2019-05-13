@@ -71,10 +71,12 @@ export default new Vuex.Store({
       });
     },
     UPDATE_CONTAINER_TEMPERATURE(state, { id, temperature }) {
-      state.containers[(id - 1)].temperature = temperature;
+      const index = state.containers.map(container => container.id).indexOf(id);
+      state.containers[index].temperature = temperature;
     },
     REMOVE_CONTAINER(state, id) {
-      state.containers.splice((id - 1), 1);
+      const index = state.containers.map(container => container.id).indexOf(id);
+      state.containers.splice(index, 1);
     },
   },
   actions: {

@@ -50,6 +50,7 @@ export default {
         if (this.containers.length) {
           // select container randomly
           const container = this.containers[Math.floor(Math.random() * this.containers.length)];
+
           // calculate randomly the new temperature
           let temperature = container.temperature + Math.floor(Math.random() * 5) - 2;
 
