@@ -1,9 +1,10 @@
 <template>
   <p class="empty-list">
-    <i class="icon"></i>
+    <i class="fas fa-truck-moving"></i>
     <span>Your truck is empty.
-      <router-link to="/create" class="add">Click here</router-link>
-      to add new container</span>
+      <router-link to="/create">Click here</router-link>
+      to add new container
+    </span>
   </p>
 </template>
 <script>
@@ -14,14 +15,15 @@ export default {
 <style lang="scss" scoped>
 .empty-list {
   display: flex;
+  flex-direction: column;
   align-items: center;
+  justify-content: center;
   font-size: 18px;
   margin-top: 20px;
-  .add {
-    color: #0099bf;
-    &:hover {
-      color: #00667f;
-    }
+  i {
+    font-size: 60px;
+    margin-bottom: 20px;
+    color: $gray-99;
   }
 }
 </style>

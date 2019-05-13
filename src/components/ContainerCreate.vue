@@ -1,20 +1,13 @@
 <template>
-  <div class="container-add">
-    <div class="content" :class="{ error }">
-      <header class="d-flex align-items-center justify-content-between">
-        <h3 class="mt-0 mb-0">Add new container</h3>
-        <i class="icon-remove" @click="back"></i>
-      </header>
-      <div class="input-wrapper">
-        <label>Container name: </label>
-         <input type="text" v-model="name" name="container-name">
-      </div>
+  <div class="container-add" :class="{ error }">
+    <form name="container-add" class="content" :class="{ error }">
+    <h2>Add new container</h2>
       <div class="input-wrapper">
         <label>Beer</label>
         <select v-model="selectedBeer" id="beer-type">
           <option :value="undefined" hidden disabled>Select</option>
-          <option v-for="(option, key) in beerOptions" :key="key" :value="option.id">
-            {{ option.name }}
+          <option v-for="(beer, key) in beers" :key="key" :value="beer.id">
+            {{ beer.name }}
           </option>
         </select>
       </div>
@@ -23,58 +16,50 @@
         <input type="number" v-model.number="quantity" name="quantity" />
       </div>
       <div class="button-wrapper">
-        <button @click.prevent="save">Add</button>
+        <button @click.prevent="back" class="cancel">Cancel</button>
+        <button @click.prevent="save" type="submit">Add</button>
       </div>
-    </div>
+    </form>
   </div>
 </template>
 <script>
-import { add } from '@/actions/containers';
-import beers from '@/actions/beers';
-
 export default {
   name: 'ContainerCreate',
   data() {
     return {
-      name: '',
       quantity: undefined,
       selectedBeer: undefined,
-      beerOptions: [],
       error: false,
     };
   },
   methods: {
-    getBeers() {
-      this.beerOptions = beers();
-    },
     save() {
       if (this.isValid) {
-        add(this.name, this.selectedBeer, this.quantity);
+        // dispatch mutation to add the container
+        this.$store.dispatch('addContainer', { beer: this.selectedBeer, quantity: this.quantity });
+        // return to latest route
         this.back();
+
+        // emit success notification
         this.$notify({
           group: 'create',
           title: 'Success!',
           text: 'Container sucessfully created',
         });
       } else this.error = true;
-      this.reset();
     },
     back() {
       this.$router.go(-1);
     },
-    reset() {
-      this.name = '';
-      this.quantity = undefined;
-      this.selectedBeer = undefined;
-    },
   },
   computed: {
+    beers() {
+      return this.$store.state.beers;
+    },
     isValid() {
+      // form validation
       return !!this.selectedBeer && !!this.quantity;
     },
-  },
-  mounted() {
-    this.getBeers();
   },
 };
 </script>
@@ -87,20 +72,19 @@ export default {
     position: absolute;
     top: 0;
     left: 0;
-    background-color: #426cda;
-    opacity: 0.12;
+    background-color: $gray-44;
+    opacity: .6;
     z-index: 1;
   }
   &.error {
     input, select {
-      border-color: red;
+      border-color: $error;
     }
   }
   .content {
-    width: 400px;
     padding: 50px;
-    background-color: #fff;
-    border-radius: 8px;
+    background-color: $white;
+    border-radius: 4px;
 
     position: absolute;
     top: 50%;
@@ -108,6 +92,10 @@ export default {
 
     transform: translate(-50%, -50%);
     z-index: 2;
+
+    -webkit-box-shadow: 3px 3px 6px 0px rgba(68,68,68,0.08);
+    -moz-box-shadow: 3px 3px 6px 0px rgba(68,68,68,0.08);
+    box-shadow: 3px 3px 6px 0px rgba(68,68,68,0.08);
   }
 }
 </style>

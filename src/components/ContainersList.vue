@@ -1,43 +1,47 @@
 <template>
   <div class="containers-list">
     <header>
-      <h2>My Containers</h2>
+      <h2>Containers</h2>
       <router-link to="/create" class="btn">Add Container</router-link>
     </header>
-    <div class="row" v-if="!!containers.length">
+    <div class="grid">
       <div class="col" v-for="(container, key) in containers" :key="key">
         <container-card :container="container" />
       </div>
     </div>
-    <empty-list v-else />
   </div>
 </template>
 <script>
 import Card from '@/components/atoms/Card.vue';
-import EmptyList from '@/components/atoms/EmptyList.vue';
-import { list } from '@/actions/containers';
 
 export default {
   name: 'ContainersList',
   components: {
     'container-card': Card,
-    'empty-list': EmptyList,
   },
-  data() {
-    return {
-      containers: [],
-    };
-  },
-  methods: {
-    getContainers() {
-      this.containers = list();
+  computed: {
+    containers() {
+      return this.$store.state.containers;
     },
-  },
-  mounted() {
-    this.getContainers();
   },
 };
 </script>
-<style>
+<style lang="scss" scoped>
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 20px;
+}
 
+@media screen and (min-width: 768px) and (max-width: 992px) {
+  .grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
 </style>
