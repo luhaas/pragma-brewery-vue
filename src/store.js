@@ -59,7 +59,6 @@ export default new Vuex.Store({
   state: {
     containers: [],
     beers: beersArray,
-    totalContainers: 0,
   },
   mutations: {
     ADD_CONTAINER(state, { beer, quantity }) {
