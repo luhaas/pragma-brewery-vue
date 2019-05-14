@@ -90,7 +90,7 @@ The temperature of the containers is checked every two seconds.
 
 
 ## Improvements for version 2.0 ##
-- Expand automated tests.
+- Expand unit tests.
 - Allow the number of beers in the container to be edited.
-- Allow to include more than one type of beer, notifying if the types have different storage conditions.
-- Implement PWA for use on smartphones with native push notifications.
+- Allow carrying more than one type of beer, notifying if the types have different storage conditions.
+- Implement a Progressive Web Application(PWA) for use on smartphones with native push notifications.
