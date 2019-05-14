@@ -93,4 +93,4 @@ The temperature of the containers is checked every two seconds.
 - Expand unit tests.
 - Allow the number of beers in the container to be edited.
 - Allow carrying more than one type of beer, notifying if the types have different storage conditions.
-- Implement a Progressive Web Application(PWA) for use on smartphones with native push notifications.
+- Implement a Progressive Web Application (PWA) for use on smartphones with native push notifications.
