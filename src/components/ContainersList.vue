@@ -12,6 +12,7 @@
   </div>
 </template>
 <script>
+import { mapGetters } from 'vuex';
 import Card from '@/components/atoms/Card.vue';
 
 export default {
@@ -19,11 +20,10 @@ export default {
   components: {
     'container-card': Card,
   },
-  computed: {
-    containers() {
-      return this.$store.state.containers;
-    },
-  },
+  // call store prop
+  computed: mapGetters([
+    'containers',
+  ]),
 };
 </script>
 <style lang="scss" scoped>

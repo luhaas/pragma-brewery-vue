@@ -20,6 +20,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 import ContainersList from '@/components/ContainersList.vue';
 import EmptyList from '@/components/atoms/EmptyList.vue';
 import ContainerCreate from '@/components/ContainerCreate.vue';
@@ -64,14 +65,11 @@ export default {
       }, 2000);
     },
   },
-  computed: {
-    containers() {
-      return this.$store.state.containers;
-    },
-    beers() {
-      return this.$store.state.beers;
-    },
-  },
+  // call store props
+  computed: mapGetters([
+    'containers',
+    'beers',
+  ]),
   mounted() {
     this.temperatureRandom();
 
@@ -91,6 +89,7 @@ export default {
 .dashboard {
   padding-top: 50px;
   padding-bottom: 50px;
+  flex: 1;
   footer {
     margin-top: auto;
   }

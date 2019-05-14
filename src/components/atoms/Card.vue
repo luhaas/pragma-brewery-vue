@@ -1,6 +1,6 @@
 <template>
   <div class="card">
-    <i class="fas fa-trash-alt remove" @click="remove"></i>
+    <i class="fas fa-trash-alt remove" @click="removeContainer"></i>
     <div class="grid">
       <div class="col">
         <p class="container-id">Container #{{ container.id }}</p>
@@ -16,6 +16,8 @@
   </div>
 </template>
 <script>
+import { mapActions } from 'vuex';
+
 export default {
   props: {
     container: {
@@ -23,12 +25,10 @@ export default {
       required: true,
     },
   },
-  methods: {
-    remove() {
-      // dispatch event to remove selected container
-      this.$store.dispatch('removeContainer', this.container.id);
-    },
-  },
+  // call store action to remove selected container
+  methods: mapActions([
+    'removeContainer',
+  ]),
   computed: {
     beer() {
       // filter container beer by id

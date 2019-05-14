@@ -23,6 +23,8 @@
   </div>
 </template>
 <script>
+import { mapGetters } from 'vuex';
+
 export default {
   name: 'ContainerCreate',
   data() {
@@ -53,9 +55,10 @@ export default {
     },
   },
   computed: {
-    beers() {
-      return this.$store.state.beers;
-    },
+    // call store prop
+    ...mapGetters([
+      'beers',
+    ]),
     isValid() {
       // form validation
       return !!this.selectedBeer && !!this.quantity;

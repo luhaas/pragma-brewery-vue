@@ -19,6 +19,9 @@
 <style lang="scss" scoped>
 #app {
   min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 header {
   background-color: $green-2;
@@ -28,8 +31,5 @@ footer {
   border-top: 1px solid $gray-ee;
   background-color: $white;
   padding: 15px 0;
-  position: absolute;
-  bottom: 0;
-  width: 100%;
 }
 </style>

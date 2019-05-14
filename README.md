@@ -1,6 +1,6 @@
 # Pragma Brewery
 
-Pragma Brewery is a project to register beer containers and monitor your temperature.
+Pragma Brewery is a project created to register beer containers and monitor their temperature.
 
 ## Requirements
 
@@ -8,8 +8,19 @@ Pragma Brewery is a project to register beer containers and monitor your tempera
 - Vue.js
 
 
-### Why Vue.js? ###
+### Why Vue.js?
+
 Vue.js was chosen for being a performative, versatile and approachable Javascript Framework.
+
+### Development details
+
+**Stylesheet**: There's a stylesheet with general styles and the components have scoped styles too when applicable. We use Sass :)
+
+**Tests**: 
+- Eslint ensures that the code is clean and padronized;
+- Jest test the store mutations.
+
+**Documentation**: The code have many comments and this file will help you to start the project and understand its proposite. But you can contact the developer anytime to do questions :)
 
 ## Project setup
 ```
