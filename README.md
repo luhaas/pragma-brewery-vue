@@ -14,13 +14,15 @@ Vue.js was chosen for being a performative, versatile and approachable Javascrip
 
 ### Development details
 
+**Persistence**: The localStorage use (vuex-persistedstate) prevents the job being lost when refreshing the page
+
 **Stylesheet**: There's a stylesheet with general styles and the components have scoped styles too when applicable. We use Sass :)
 
 **Tests**: 
 - Eslint ensures that the code is clean and padronized;
 - Jest test the store mutations.
 
-**Documentation**: The code have many comments and this file will help you to start the project and understand its proposite. But you can contact the developer anytime to do questions :)
+**Documentation**: The code have many comments and this file will help you to start the project and understand its purpose. But you can contact the developer anytime to ask questions :)
 
 ## Project setup
 ```
@@ -80,12 +82,11 @@ the heat of the Sydney summer or sometimes due to forgetting the container doors
 
 ## Questions
 
+**How many types of beer can a container carry?**
+One type of beer at a time.
 
-**Can a container carry more than one type of beer at a time?**
-Due to the specificities of each type of beer, it was decided to carry a single type per container.
-
-**Is there a specific range desired for the temperature check?**
-The check was implemented every 2 seconds.
+**What is the temperature check interval**
+The temperature of the containers is checked every two seconds.
 
 
 ## Improvements for version 2.0 ##
